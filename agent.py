@@ -1,8 +1,6 @@
 import vertexai
-from vertexai.preview import reasoning_engines
+from vertexai.preview import reasoning_engines, rag
 from vertexai.preview.generative_models import Tool, grounding
-from vertexai.preview import rag
-from vertexai.preview.generative_models import Tool
 
 # =====================================================================
 # 1. INITIALIZE PROJECT PROFILE
@@ -60,7 +58,7 @@ system_instruction = (
 
 # Build the LangChain agent engine structural layer
 chama_agent = reasoning_engines.LangchainAgent(
-    model="gemini-3-flash",
+    model="gemini-1.5-flash",
     tools=[rag_retrieval_tool],
     model_kwargs={
         "temperature": 0.0, # 0.0 locks Gemini into strict truth-grounding mode
@@ -77,11 +75,12 @@ remote_agent = reasoning_engines.ReasoningEngine.create(
     chama_agent,
     display_name="Chama_Dispute_Arbitrator_Service",
     description="Impartial multilingual RAG-grounded arbitration engine for Kenyan Chamas.",
+    python_version="3.13",
     requirements=[
-        "google-cloud-aiplatform[langchain,reasoningengine]",
+        "google-cloud-aiplatform[langchain,reasoningengine]>=1.75.0",
+        "langchain-google-vertexai>=2.0.0",
         "cloudpickle==3.0.0",
-        "pydantic>=2.0.0",
-        "langchain-core"
+        "pydantic>=2.7.4"
     ]
 )
 
