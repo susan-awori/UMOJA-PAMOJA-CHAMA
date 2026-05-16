@@ -718,20 +718,6 @@ The AI does not:
 ```text
 _
 ```
-
----
-
-## Screenshots
-
-### Dashboard
-_To be.._
-
-### Arbitration Chat
-_To be.._
-
-### Retrieval Testing
-_To be.._
-
 ---
 
 # 22. License
